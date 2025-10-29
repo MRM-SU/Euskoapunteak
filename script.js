@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         file.split(', ').forEach((url) => {
             let btn = document.body.appendChild(document.createElement('button'))
             btn.textContent = 'Descargar';
-            btn.onclick = (e) => Download(file)
+            btn.onclick = (e) => DownloadDrive(file)
         })
         tags.split(', ').forEach((tag) => {
             let span = document.body.appendChild(document.createElement('span'))
