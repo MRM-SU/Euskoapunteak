@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
             btn.textContent = 'Descargar';
             btn.onclick = (e) => DownloadDrive(file)
         })
-        files.forEach(file => {
+        files.split(', ').forEach(file => {
             const id = getFileID(file)
             let prev = document.body.appendChild(document.createElement('iframe'))
             prev.src = `https://drive.google.com/file/d/${id}/preview`
