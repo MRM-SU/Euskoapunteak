@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', async (event) => {
             btn.textContent = 'Descargar';
             btn.onclick = (e) => DownloadDrive(file)
         })
+        let prev = document.body.appendChild(document.createElement('iframe'))
+        prev.src = `https://drive.google.com/file/d/${id}/preview`
         tags.split(', ').forEach((tag) => {
             let span = document.body.appendChild(document.createElement('span'))
             span.textContent = tag
