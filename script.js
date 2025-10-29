@@ -1,7 +1,8 @@
 function DownloadDrive(url) {
-    const match = url.match(/https:\/\/drive\.google\.com\/file\/d\/([^\/]+)\/view/);
-    if (match) {
-      window.open(match[1],'_blank');
+    const id = url.match(/https:\/\/drive\.google\.com\/file\/d\/([^\/]+)\/);
+    if (id) {
+      window.open(`https://drive.usercontent.google.com/u/0/uc?id=${id[1]}&export=download
+`,'_blank');
     }
     return true
 };
