@@ -15,19 +15,21 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     let spreadsheet = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/bdd?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
         .then(response => response.json());
     
-    spreadsheet.values.slice(1).forEach(([time,file,tags,gmail]) => {
-        const id = getFileID(file)
+    spreadsheet.values.slice(1).forEach(([time,files,tags,gmail]) => {
 
-        file.split(', ').forEach((url) => {
+        files.split(', ').forEach((url) => {
             let btn = document.body.appendChild(document.createElement('button'))
             btn.textContent = 'Descargar';
             btn.onclick = (e) => DownloadDrive(file)
         })
-        let prev = document.body.appendChild(document.createElement('iframe'))
-        prev.src = `https://drive.google.com/file/d/${id}/preview`
-        tags.split(', ').forEach((tag) => {
-            let span = document.body.appendChild(document.createElement('span'))
-            span.textContent = tag
+        files.forEach(file => {
+            const id = getFileID(file)
+            let prev = document.body.appendChild(document.createElement('iframe'))
+            prev.src = `https://drive.google.com/file/d/${id}/preview`
+            tags.split(', ').forEach((tag) => {
+                let span = document.body.appendChild(document.createElement('span'))
+                span.textContent = tag
+        })
         })
     })
 })
