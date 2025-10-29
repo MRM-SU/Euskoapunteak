@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         files.split(', ').forEach((url) => {
             let btn = document.body.appendChild(document.createElement('button'))
             btn.textContent = 'Descargar';
-            btn.onclick = (e) => DownloadDrive(file)
+            btn.onclick = (e) => DownloadDrive(url)
         })
         files.split(', ').forEach(file => {
             const id = getFileID(file)
