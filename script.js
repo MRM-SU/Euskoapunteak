@@ -3,7 +3,7 @@ function getFileID(url) {
 }
 
 function DownloadDrive(url) {
-    getFileID(url)
+    let id = getFileID(url)
     if (id) {
       window.open(`https://drive.usercontent.google.com/u/0/uc?id=${id}&export=download
 `,'_blank');
