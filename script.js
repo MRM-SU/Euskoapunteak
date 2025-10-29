@@ -1,3 +1,7 @@
+function Download(url) {
+    document.getElementById('downloads').src = url;
+};
+
 document.addEventListener('DOMContentLoaded', async (event) => {
     let spreadsheet = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/bdd?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
         .then(response => response.json());
@@ -6,6 +10,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         file.split(', ').forEach((url) => {
             let btn = document.body.appendChild(document.createElement('button'))
             btn.textContent = 'Descargar';
+            btn.onclick = (e) => Download(file)
         })
         tags.split(', ').forEach((tag) => {
             let span = document.body.appendChild(document.createElement('span'))
