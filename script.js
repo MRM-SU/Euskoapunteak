@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', async (event) => {
             prev.src = `https://drive.google.com/file/d/${id}/preview`
         })
         let pfp = document.body.appendChild(document.createElement('div'));
-        pfp.style.setProperty('--col',50)
+        const user = gmail.split('@')[0];
+        pfp.style.setProperty('--col',Array.from(user).map((_,i)=>user.charCodeAt(i)).reduce((acc,val)=>acc+val,0))
         pfp.innerHTML = await fetch('pfp.svg').then(response => response.text())
     })
 })
