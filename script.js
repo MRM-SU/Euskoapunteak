@@ -1,3 +1,14 @@
+async function fetchPDFfromDrive(driveUrl) {
+  const fileId = driveUrl.match(/\/d\/(.*?)\//)[1];
+  const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+  
+  const response = await fetch(downloadUrl);
+  if (!response.ok) throw new Error('No se pudo descargar el PDF');
+  
+  return await response.arrayBuffer(); // listo para pdf.js
+}
+
+
 async function pdfDriveFirstPageToImage(driveUrl, format = 'image/png') {
   const arrayBuffer = await fetchPDFfromDrive(driveUrl);
 
