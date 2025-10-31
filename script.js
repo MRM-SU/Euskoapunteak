@@ -27,7 +27,12 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         files.split(', ').forEach(file => {
             const id = getFileID(file)
             let img = document.body.appendChild(document.createElement('img'))
-            img.src=`https://drive.usercontent.google.com/u/0/uc?id=${id}&export=view`
+            let url = `https://drive.usercontent.google.com/u/0/uc?id=${id}&export=view`
+
+            (async () => {
+                const blob = await fetch(url).then(r => r.blob());
+                img.src = URL.createObjectURL(blob);
+            })();
             //prev.src = `https://drive.google.com/file/d/${id}/preview`
         })
         let pfp = document.body.appendChild(document.createElement('div'));
