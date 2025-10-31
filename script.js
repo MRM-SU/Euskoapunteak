@@ -26,8 +26,9 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         }
         files.split(', ').forEach(file => {
             const id = getFileID(file)
-            let prev = document.body.appendChild(document.createElement('iframe'))
-            prev.src = `https://drive.google.com/file/d/${id}/preview`
+            let img = document.body.appendChild(document.createElement('img'))
+            img.src="https://drive.usercontent.google.com/u/0/uc?id=ID_DEL_ARCHIVO&export=view"
+            //prev.src = `https://drive.google.com/file/d/${id}/preview`
         })
         let pfp = document.body.appendChild(document.createElement('div'));
         const user = gmail.split('@')[0];
