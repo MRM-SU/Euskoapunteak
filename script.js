@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         files.split(', ').forEach(file => {
             const id = getFileID(file)
             let img = document.body.appendChild(document.createElement('img'))
-            img.src="https://drive.usercontent.google.com/u/0/uc?id=ID_DEL_ARCHIVO&export=view"
+            img.src=`https://drive.usercontent.google.com/u/0/uc?id=${id}&export=view`
             //prev.src = `https://drive.google.com/file/d/${id}/preview`
         })
         let pfp = document.body.appendChild(document.createElement('div'));
