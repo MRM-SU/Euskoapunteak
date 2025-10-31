@@ -1,38 +1,29 @@
-function getFileID(url) {
-    return url.match(/https\:\/\/drive\.google\.com\/open\?id\=([^\/]+)/)[1];
+async function pdfDriveFirstPageToImage(driveUrl, format = 'image/png') {
+  const arrayBuffer = await fetchPDFfromDrive(driveUrl);
+
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const page = await pdf.getPage(1);
+
+  const viewport = page.getViewport({ scale: 2 });
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+
+  await page.render({ canvasContext: ctx, viewport }).promise;
+
+  return canvas.toDataURL(format); // DataURL PNG/WebP
 }
 
-function DownloadDrive(url) {
-    let id = getFileID(url)
-    if (id) {
-      window.open(`https://drive.usercontent.google.com/u/0/uc?id=${id}&export=download
-`,'_blank');
-    }
-    return true
-};
-
-document.addEventListener('DOMContentLoaded', async (event) => {
-    let spreadsheet = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/bdd?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
-        .then(response => response.json());
-    
-    spreadsheet.values.slice(1).forEach(async ([time,files,tags,gmail,title,description]) => {
-
-        let btn = document.body.appendChild(document.createElement('button'))
-        btn.textContent = 'Descargar todo';
-        btn.onclick = (e) => {
-            files.split(', ').forEach((url) => {
-                DownloadDrive(url)
-            })
-        }
-        files.split(', ').forEach(file => {
-            const id = getFileID(file)
-            let iframe = document.body.appendChild(document.createElement('iframe'))
-            iframe.src = `https://drive.google.com/file/d/${id}/preview`;
-            iframe.allow = 'autplay'
-        })
-        let pfp = document.body.appendChild(document.createElement('div'));
-        const user = gmail.split('@')[0];
-        pfp.style.setProperty('--col',Array.from(user).map((_,i)=>user.charCodeAt(i)).reduce((acc,val)=>acc+val,0))
-        pfp.innerHTML = await fetch('pfp.svg').then(response => response.text())
+function createImgOfPrev(id) {
+    const driveUrl = 'https://drive.google.com/file/d/${id}/view?usp=sharing';
+    pdfDriveFirstPageToImage(driveUrl, 'image/png')
+    .then(dataUrl => {
+        const img = document.createElement('img');
+        img.src = dataUrl;
+        document.body.appendChild(img);
     })
-})
+    .catch(console.error);
+}
+
+createImgOfPrev('1ZVI3lJ8FdI8d8zZ-JmSY8d1cjuCv6CL5')
