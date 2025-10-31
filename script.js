@@ -26,14 +26,9 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         }
         files.split(', ').forEach(file => {
             const id = getFileID(file)
-            let img = document.body.appendChild(document.createElement('img'))
-            let url = `https://drive.usercontent.google.com/u/0/uc?id=${id}&export=download`;
-
-            (async () => {
-                const blob = await fetch(url).then(r => r.blob());
-                img.src = URL.createObjectURL(blob);
-            })();
-            //prev.src = `https://drive.google.com/file/d/${id}/preview`
+            let iframe = document.body.appendChild(document.createElement('iframe'))
+            iframe.src = `https://drive.usercontent.google.com/u/0/uc?id=${id}/preview`;
+            iframe.allow = 'autplay'
         })
         let pfp = document.body.appendChild(document.createElement('div'));
         const user = gmail.split('@')[0];
