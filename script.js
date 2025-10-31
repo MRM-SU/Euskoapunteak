@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         files.split(', ').forEach(file => {
             const id = getFileID(file)
             let iframe = document.body.appendChild(document.createElement('iframe'))
-            iframe.src = `https://drive.usercontent.google.com/u/0/uc?id=${id}/preview`;
+            iframe.src = `https://drive.google.com/file/d/${id}/preview`;
             iframe.allow = 'autplay'
         })
         let pfp = document.body.appendChild(document.createElement('div'));
