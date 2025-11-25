@@ -48,7 +48,7 @@ async function main() {
       throw new Error('Invalid ID');
     }
   } catch ( error ) {
-    document.body.innerHTML = `<h1>Error</h1><h3>${error.message}</h3><button onclick="window.parent.close();window.parent.postMessage({action: "hash",hash: ''}, "*");">Bueltatu</button>`
+    document.body.innerHTML = `<h1>Error</h1><h3>${error.message}</h3><button onclick="window.parent.close();window.parent.postMessage({action: 'hash',hash: ''}, '*');">Bueltatu</button>`
     document.body.classList.add('error');
     return
   } finally {
