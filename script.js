@@ -12,6 +12,8 @@ function DownloadDrive(url) {
 };
 
 var spreadsheet;
+var report;
+var ban;
 
 var posts;
 var fuse;
@@ -49,8 +51,12 @@ function search_() {
 document.addEventListener('DOMContentLoaded', async (event) => {
     document.querySelector('#search input').onchange = search_;
     document.querySelector('#search button').onclick = search_;
+    report = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/salaketak?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
+          .then(response => response.json()).then(response => response.values.slice(1));
     spreadsheet = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/bdd?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
         .then(response => response.json());
+    ban = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/ban?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
+          .then(response => response.json()).then(response => response.values.slice(1));
 
     posts = spreadsheet.values.slice(1).map(([time, files, tags, gmail, title, description]) => ({
         time,
