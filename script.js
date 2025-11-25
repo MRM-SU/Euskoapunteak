@@ -22,14 +22,14 @@ function isok(id) {
   ok = true;
   report.forEach(_ => {
     if (_[2] == id) {
-      throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
+      //throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
       ok = false;
     }
   })
   ban.forEach(_ => {
     console.log(parseInt(_[1]) >= 3,_,sheet[3])
     if (parseInt(_[1]) >= 3 && _[0] == sheet[3]) {
-      throw new Error('Erabiltzaile honek erabilera debekatuta du');
+      //throw new Error('Erabiltzaile honek erabilera debekatuta du');
       ok = false;
     }
   })
