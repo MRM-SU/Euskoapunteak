@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     spreadsheet.values.slice(1).forEach(async ([time,files,tags,gmail,title,description],index) => {
         let pub = document.body.appendChild(document.createElement('div'));
         pub.id = 'pub';
-        pub.setAttribute('pubID',index-1)
+        pub.setAttribute('pubID',index)
         pub.style.cursor = 'pointer';
         
         pub.onclick = () => {
