@@ -34,17 +34,17 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         .then(response => response.json());
 
     posts = spreadsheet.values.slice(1).map(([time, files, tags, gmail, title, description]) => ({
-          time,
-          files,
-          tags,
-          gmail,
-          title,
-          description
-        }));
-        fuse = new Fuse(posts, {
-          keys: ["title", "description", "tags"],
-          threshold: 0.3
-        });
+        time,
+        files,
+        tags,
+        gmail,
+        title,
+        description
+    }));
+    fuse = new Fuse(posts, {
+        keys: ["title", "description", "tags"],
+        threshold: 0.3
+    });
     
     spreadsheet.values.slice(1).forEach(async ([time,files,tags,gmail,title,description],index) => {
         let pub = document.body.appendChild(document.createElement('div'));
