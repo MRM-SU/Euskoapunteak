@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         let pub = document.body.appendChild(document.createElement('div'));
         pub.id = 'pub';
         pub.style.cursor = 'pointer';
-        pub.onclick = () => window.location.href = `./document.html#${index}`;
+        pub.onclick = () => window.parent.querySelector('iframe#ciframe').src = `./document.html#${index}`;
 
         let main = document.createElement('div');
         main.id = 'main';
