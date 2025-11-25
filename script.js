@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         
         pub.onclick = () => {
             window.parent.postMessage({
-                action: "navigate",
-                url: `https://MRM-SU.github.io/Euskoapunteak/document#${index}`
+                action: "hash",
+                hash: index
             }, "*");
         }
 
