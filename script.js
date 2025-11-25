@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     
     spreadsheet.values.slice(1).forEach(async ([time,files,tags,gmail,title,description],index) => {
         let pub = document.body.appendChild(document.createElement('div'));
-        pub.style.display = isok(parseInt(pub.getAttribute('pubID'))) ? 'flex' : 'none';
+        pub.style.display = isok(index) ? 'flex' : 'none';
         pub.id = 'pub';
         pub.setAttribute('pubID',index)
         pub.style.cursor = 'pointer';
