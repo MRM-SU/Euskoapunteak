@@ -41,7 +41,7 @@ function search_() {
     const matchesBoolean = posts.map(p => matchedSet.has(p));
     console.log(matchesBoolean);
     document.querySelectorAll('#pub').forEach((pub, index) => {
-        if (!isok(pub.getAttribute('pubID'))) return;
+        if (!isok(parseInt(pub.getAttribute('pubID')))) return;
         pub.style.display = matchesBoolean[index] ? 'flex' : 'none';
     })
 }
