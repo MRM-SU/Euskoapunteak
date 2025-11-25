@@ -29,10 +29,19 @@ async function main() {
     ban = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/ban?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
           .then(response => response.json()).then(response => response.values.slice(1));
     ok = true;
-    report.forEach(_ => {
-      if (_[2] == id) {
-        throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
-        ok = false;
+    report.forEach(r => {
+      if (r[2] == id) {
+        ban.forEach(_ => {
+          if (parseInt(_[1]) >= 3 && _[0] == r) {
+            ok = 'TRUE'
+          }
+        })
+        if (ok == 'TRUE') {
+          ok = true
+        } else {
+          throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
+          ok = false;
+        }
       }
     })
     ban.forEach(_ => {
