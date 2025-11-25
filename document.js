@@ -12,6 +12,25 @@ function DownloadDrive(url) {
 };
 
 
+function isok(id) {
+  ok = true;
+  report.forEach(_ => {
+    if (_[2] == id) {
+      throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
+      ok = false;
+    }
+  })
+  ban.forEach(_ => {
+    console.log(parseInt(_[1]) >= 3,_,sheet[3])
+    if (parseInt(_[1]) >= 3 && _[0] == sheet[3]) {
+      throw new Error('Erabiltzaile honek erabilera debekatuta du');
+      ok = false;
+    }
+  })
+  return ok;
+}
+
+
 async function main() {
   var spreadsheet;
   var sheet;
@@ -28,7 +47,7 @@ async function main() {
           .then(response => response.json()).then(response => response.values.slice(1));
     ban = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1OtOYmlJOY9b4onvYjBtL21585g_DaaHWiqLH6oIlp_g/values/ban?key=AIzaSyDwRrD670SxWVqtuPmHpVyb5PxoptznkY4')
           .then(response => response.json()).then(response => response.values.slice(1));
-    ok = true;
+    ok = isok(id);
     report.forEach(r => {
       if (r[2] == id) {
         ban.forEach(_ => {

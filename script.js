@@ -16,6 +16,24 @@ var spreadsheet;
 var posts;
 var fuse;
 
+function isok(id) {
+  ok = true;
+  report.forEach(_ => {
+    if (_[2] == id) {
+      throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
+      ok = false;
+    }
+  })
+  ban.forEach(_ => {
+    console.log(parseInt(_[1]) >= 3,_,sheet[3])
+    if (parseInt(_[1]) >= 3 && _[0] == sheet[3]) {
+      throw new Error('Erabiltzaile honek erabilera debekatuta du');
+      ok = false;
+    }
+  })
+  return ok;
+}
+
 function search_() {
     const query = document.querySelector('#search input').value;
     const fuseResults = fuse.search(query);
@@ -23,6 +41,7 @@ function search_() {
     const matchesBoolean = posts.map(p => matchedSet.has(p));
     console.log(matchesBoolean);
     document.querySelectorAll('#pub').forEach((pub, index) => {
+        if (!isok(pub.getAttribute('pubID'))) return;
         pub.style.display = matchesBoolean[index] ? 'flex' : 'none';
     })
 }
@@ -49,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     spreadsheet.values.slice(1).forEach(async ([time,files,tags,gmail,title,description],index) => {
         let pub = document.body.appendChild(document.createElement('div'));
         pub.id = 'pub';
+        pub.setAttribute('pubID',index-1)
         pub.style.cursor = 'pointer';
         
         pub.onclick = () => {
