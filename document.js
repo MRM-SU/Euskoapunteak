@@ -16,7 +16,7 @@ async function main() {
   var spreadsheet;
   var sheet;
   try {
-    let id = parseInt(window.location.hash.slice(1))
+    let id = parseInt(window.parent.location.hash.slice(1))
     if (Number.isNaN(id)) {
       alert('Invalid ID')
       return
@@ -48,7 +48,7 @@ async function main() {
       throw new Error('Invalid ID');
     }
   } catch ( error ) {
-    document.body.innerHTML = `<h1>Error</h1><h3>${error.message}</h3><button onclick="window.close();window.location.href='./'">Bueltatu</button>`
+    document.body.innerHTML = `<h1>Error</h1><h3>${error.message}</h3><button onclick="window.parent.close();window.location.href='./'">Bueltatu</button>`
     document.body.classList.add('error');
     return
   } finally {
