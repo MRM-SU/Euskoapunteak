@@ -116,5 +116,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         const user = gmail.split('@')[0];
         const span = pfp.appendChild(document.createElement('span'));
         span.textContent = user[0].toUpperCase();
+        span.title = gmail;
     })
 })
