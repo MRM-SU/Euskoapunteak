@@ -27,8 +27,8 @@ function isok(id) {
     }
   })
   ban.forEach(_ => {
-    console.log(parseInt(_[1]) >= 3,_,sheet[3])
-    if (parseInt(_[1]) >= 3 && _[0] == sheet[3]) {
+    console.log(parseInt(_[1]) >= 3,_,spreadsheet[3])
+    if (parseInt(_[1]) >= 3 && _[0] == spreadsheet[3]) {
       //throw new Error('Erabiltzaile honek erabilera debekatuta du');
       ok = false;
     }
