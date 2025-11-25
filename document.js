@@ -16,7 +16,7 @@ async function main() {
   var spreadsheet;
   var sheet;
   try {
-    let id = parseInt(window.parent.location.hash.slice(1))
+    let id = parseInt(window.location.hash.slice(1))
     if (Number.isNaN(id)) {
       alert('Invalid ID')
       return
