@@ -101,6 +101,7 @@ async function main() {
     document.body.appendChild(document.createElement('h3')).textContent = 'Fitxategiak'
     sheet[1].split(',').forEach(async url => {
       let a = document.body.appendChild(document.createElement('a'));
+      a.target = '_blank';
 
 
 
