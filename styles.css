@@ -356,3 +356,7 @@ body.error > button {
     margin: 0 20px;
     cursor: pointer;
 }
+
+button {
+    cursor: pointer;
+}
