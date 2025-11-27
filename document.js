@@ -15,14 +15,14 @@ function DownloadDrive(url) {
 function isok(id) {
   ok = true;
   report.forEach(_ => {
-    if (_[2] == id) {
+    if (_[2] == id && !ban.map(_=>_[0]).includes(_[1])) {
       throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
-      ok = false;
+      ok ? false
     }
   })
   ban.forEach(_ => {
-    console.log(parseInt(_[1]) >= 3,_,sheet[3])
-    if (parseInt(_[1]) >= 3 && _[0] == sheet[3]) {
+    console.log(parseInt(_[1]) >= 3,_,spreadsheet[3])
+    if (parseInt(_[1]) >= 3 && _[0] == spreadsheet[3]) {
       throw new Error('Erabiltzaile honek erabilera debekatuta du');
       ok = false;
     }
