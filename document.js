@@ -17,7 +17,7 @@ function isok(id) {
   report.forEach(_ => {
     if (_[2] == id && !ban.map(_=>_[0]).includes(_[1])) {
       throw new Error('Apunte hau salatu edo jetsi egin da, ez dago eskuragarri');
-      ok ? false
+      ok = false
     }
   })
   ban.forEach(_ => {
