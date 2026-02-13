@@ -134,6 +134,8 @@ body {
     white-space: nowrap;
     font-weight: normal;
     grid-area: 2 / 1 / 3 / 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #pub #main #top #tags {
     grid-area: 1 / 1 / 2 / 2;
