@@ -82,8 +82,9 @@ async function main() {
   } finally {
     document.querySelector('#title').textContent = sheet[4];
     document.querySelector('#sub').textContent = sheet[5];
+      tags.innerHTML = '';
     sheet[2].split(',').forEach(tag => {
-      let tag_ = document.querySelector('#title').appendChild(document.createElement('span'));
+      let tag_ = document.querySelector('#tags').appendChild(document.createElement('span'));
       tag_.id = 'tag';
       tag_.textContent = tag.trim();
     })
