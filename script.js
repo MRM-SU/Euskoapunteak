@@ -88,6 +88,14 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         main.id = 'main';
         pub.appendChild(main);
 
+        main.title = 'Click bikoitza TTS erabiltzeko';
+        main.addEventListener('dblclick',()=>{
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = "es-EU";
+          
+          speechSynthesis.speak(utterance);
+        })
+
         let top = document.createElement('div');
         top.id = 'top';
         main.appendChild(top);
@@ -118,4 +126,5 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         span.textContent = user[0].toUpperCase();
         span.title = gmail;
     })
+
 })
