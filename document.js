@@ -92,7 +92,9 @@ async function main() {
     gmail_.id = 'gmail';
     gmail_.textContent = sheet[3];
     gmail_.onclick = () => window.open(`mailto:${sheet[3]}`);
-    gmail_.title = 'Mezu bat bidali'
+    gmail_.title = 'Mezu bat bidali';
+
+    document.querySelector('#tts').disabled = false;
 
     let download_ = document.body.appendChild(document.createElement('button'));
     download_.textContent = `Deskargatu ${sheet[1].split(',').length} fitxategi`;
