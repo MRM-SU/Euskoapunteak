@@ -80,7 +80,7 @@ async function main() {
     document.body.classList.add('error');
     return
   } finally {
-    document.querySelector('#title').textContent = sheet[4];
+    document.querySelector('#title span').textContent = sheet[4];
     document.querySelector('#sub').textContent = sheet[5];
       tags.innerHTML = '';
     sheet[2].split(',').forEach(tag => {
