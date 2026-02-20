@@ -90,6 +90,10 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
         main.title = 'Click bikoitza TTS erabiltzeko';
         main.addEventListener('dblclick',()=>{
+          main.style.cursor = 'progress';
+          setTimeout(()=>{
+              main.style.cursor = 'auto';
+          },100);
           const utterance = new SpeechSynthesisUtterance(`
 ${title}
 ${gmail}
@@ -132,4 +136,5 @@ ${description}
     })
 
 })
+
 
