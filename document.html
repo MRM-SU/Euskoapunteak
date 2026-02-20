@@ -66,9 +66,10 @@
     });
   }
   
-  async function tts(event) {
-    if (event.target.style.cursor == 'progress') return false;
-    event.target.style.cursor = 'progress';
+  async function tts() {
+    let button = document.querySelector('button#tts');
+    if (button.style.cursor == 'progress') return false;
+    button.style.cursor = 'progress';
     let content = `
 ${document.body.querySelector('#title').textContent}
 ${document.body.querySelector('#sub').textContent}
@@ -78,6 +79,6 @@ Fitxategiak:
 ${Array.from(document.querySelectorAll('li')).map(li=>li.textContent).join(',\n')}
     `;
     await speakAsync(utterance);
-    event.target.style.cursor = 'auto';
+    button.style.cursor = 'auto';
   }
 </script>
