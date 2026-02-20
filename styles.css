@@ -331,6 +331,7 @@ button:not([disabled]):active {
 
 button[disabled] {
     opacity: .5;
+    cursor: not-allowed;
 }
 
 footer {
