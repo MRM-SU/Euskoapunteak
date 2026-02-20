@@ -54,17 +54,30 @@
 
 <div onclick="window.parent.postMessage({action: 'hash',hash: ''}, '*');" style="width: 40px;height: 40px;position: fixed;left: 20px;bottom: 25px;mask-image: url(casa.svg);mask-position: center;mask-size: cover;cursor: pointer;background: var(--tag-bg-grad);"></div>
 <script>
-  function tts() {
+  function speakAsync(text, lang = "eu-ES") {
+    return new Promise((resolve, reject) => {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+  
+      utterance.onend = () => resolve();
+      utterance.onerror = (event) => reject(event);
+  
+      speechSynthesis.speak(utterance);
+    });
+  }
+  
+  async function tts(event) {
+    if (event.target.style.cursor == 'progress') return false;
+    event.target.style.cursor = 'progress';
     let content = `
 ${document.body.querySelector('#title').textContent}
 ${document.body.querySelector('#sub').textContent}
 ${document.body.querySelector('#gmail').textContent}
 ${document.body.querySelector('button:not(#tts)').textContent}
 Fitxategiak:
-${document.body.querySelectorAll('li').map(li=>li.textContent).join(',\n')}
+${Array.from(document.querySelectorAll('li')).map(li=>li.textContent).join(',\n')}
     `;
-    const utterance = new SpeechSynthesisUtterance(content);
-    utterance.lang = "eu-ES"; // Euskera
-    speechSynthesis.speak(utterance);
+    await speakAsync(utterance);
+    event.target.style.cursor = 'auto';
   }
 </script>
