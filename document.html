@@ -47,8 +47,24 @@
 <h3 id="sub">Loading...</h3>
 </header>
 <footer>
+  <button onclick="tts()">TTS</button>
   <p>Arazorik apunteekin? <a target="_blank" href='https://docs.google.com/forms/d/e/1FAIpQLScw8YRdgB1qpQRmcBVYZnaW6J51PF4gKfa73_mQm2cXVkGvfw/viewform?usp=publish-editor'>Salatu</a></p>
 </footer>
 <script src="document.js"></script>
 
 <div onclick="window.parent.postMessage({action: 'hash',hash: ''}, '*');" style="width: 40px;height: 40px;position: fixed;left: 20px;bottom: 25px;mask-image: url(casa.svg);mask-position: center;mask-size: cover;cursor: pointer;background: var(--tag-bg-grad);"></div>
+<script>
+  function tts() {
+    let content = `
+${document.body.querySelector('#title').textContent}
+${document.body.querySelector('#sub').textContent}
+${document.body.querySelector('#gmail').textContent}
+${document.body.querySelector('button').textContent}
+Fitxategiak:
+${document.body.querySelectorAll('li').map(li=>li.textContent).join(',\n')}
+    `;
+    const utterance = new SpeechSynthesisUtterance(content);
+    utterance.lang = "eu-ES"; // Euskera
+    speechSynthesis.speak(utterance);
+  }
+</script>
