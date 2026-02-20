@@ -47,49 +47,10 @@
 <h3 id="sub">Loading...</h3>
 </header>
 <footer>
-  <button disabled id="tts" onclick="tts()">TTS</button>
+  <button disabled id="tts">TTS</button>
   <p>Arazorik apunteekin? <a target="_blank" href='https://docs.google.com/forms/d/e/1FAIpQLScw8YRdgB1qpQRmcBVYZnaW6J51PF4gKfa73_mQm2cXVkGvfw/viewform?usp=publish-editor'>Salatu</a></p>
 </footer>
 <script src="document.js"></script>
 
 <div onclick="window.parent.postMessage({action: 'hash',hash: ''}, '*');" style="width: 40px;height: 40px;position: fixed;left: 20px;bottom: 25px;mask-image: url(casa.svg);mask-position: center;mask-size: cover;cursor: pointer;background: var(--tag-bg-grad);"></div>
-<script>
-  function speakAsync(text, lang = "eu-ES") {
-    return new Promise((resolve, reject) => {
-      const utterance = new SpeechSynthesisUtterance(text);
-  
-      // Buscar voz en euskera
-      const voices = speechSynthesis.getVoices();
-      const basqueVoice = voices.find(v => v.lang === "eu-ES");
-  
-      if (basqueVoice) {
-        utterance.voice = basqueVoice;
-        utterance.lang = basqueVoice.lang;
-        console.log("Usando voz:", basqueVoice.name);
-      } else {
-        console.warn("No hay voz en euskera instalada");
-      }
-  
-      utterance.onend = resolve;
-      utterance.onerror = reject;
-  
-      speechSynthesis.speak(utterance);
-    });
-  }
-  
-  async function tts() {
-    let button = document.querySelector('button#tts');
-    if (button.style.cursor == 'progress') return false;
-    button.style.cursor = 'progress';
-    let content = `
-${document.body.querySelector('#title').textContent}
-${document.body.querySelector('#sub').textContent}
-${document.body.querySelector('#gmail').textContent}
-${document.body.querySelector('button:not(#tts)').textContent}
-Fitxategiak:
-${Array.from(document.querySelectorAll('li')).map(li=>li.textContent).join(',\n')}
-    `;
-    await speakAsync(content);
-    button.style.cursor = 'auto';
-  }
-</script>
+<script src="tts.js" type="module"></script>
