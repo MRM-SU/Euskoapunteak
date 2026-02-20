@@ -3,6 +3,10 @@ async function speakAsync(text) {
     try {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "es-EU";
+
+      utterance.onend = () => resolve();
+      utterance.onerror = (err) => reject(err);
+      
       speechSynthesis.speak(utterance);
     } catch (err) {
       reject(err);
