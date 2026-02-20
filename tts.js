@@ -1,22 +1,7 @@
-import { Espeak } from './espeak.js'
-
-const espeak = new Espeak();
-
 async function speakAsync(text) {
   return new Promise(async (resolve, reject) => {
     try {
-      // Genera audio WAV en bytes desde eSpeak
-      const wavBytes = await espeak.speak(text, { lang: "eu" });
-
-      // Crea un Blob y un objeto URL para reproducirlo
-      const blob = new Blob([wavBytes], { type: "audio/wav" });
-      const audio = new Audio(URL.createObjectURL(blob));
-
-      // Espera a que termine la reproducción
-      audio.onended = resolve;
-      audio.onerror = reject;
-
-      audio.play();
+      speak('Kaixo Mundua', { voice: 'eu' })
     } catch (err) {
       reject(err);
     }
