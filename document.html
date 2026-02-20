@@ -78,7 +78,7 @@ ${document.body.querySelector('button:not(#tts)').textContent}
 Fitxategiak:
 ${Array.from(document.querySelectorAll('li')).map(li=>li.textContent).join(',\n')}
     `;
-    await speakAsync(utterance);
+    await speakAsync(content);
     button.style.cursor = 'auto';
   }
 </script>
