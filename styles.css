@@ -323,10 +323,14 @@ button {
     transition: 1s;
 }
 
-button:active {
+button:not([disabled]):active {
     box-shadow: var(--shadow-lit);
     transition: .3s;
     translate: 0 5px;
+}
+
+button[disabled] {
+    opacity: .5;
 }
 
 footer {
