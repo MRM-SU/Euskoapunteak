@@ -90,7 +90,11 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
         main.title = 'Click bikoitza TTS erabiltzeko';
         main.addEventListener('dblclick',()=>{
-          const utterance = new SpeechSynthesisUtterance(text);
+          const utterance = new SpeechSynthesisUtterance(`
+${title}
+${gmail}
+${description}
+          `);
           utterance.lang = "es-EU";
           
           speechSynthesis.speak(utterance);
@@ -128,3 +132,4 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     })
 
 })
+
