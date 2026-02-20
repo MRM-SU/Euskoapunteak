@@ -47,7 +47,7 @@
 <h3 id="sub">Loading...</h3>
 </header>
 <footer>
-  <button onclick="tts()">TTS</button>
+  <button id="tts" onclick="tts()">TTS</button>
   <p>Arazorik apunteekin? <a target="_blank" href='https://docs.google.com/forms/d/e/1FAIpQLScw8YRdgB1qpQRmcBVYZnaW6J51PF4gKfa73_mQm2cXVkGvfw/viewform?usp=publish-editor'>Salatu</a></p>
 </footer>
 <script src="document.js"></script>
@@ -59,7 +59,7 @@
 ${document.body.querySelector('#title').textContent}
 ${document.body.querySelector('#sub').textContent}
 ${document.body.querySelector('#gmail').textContent}
-${document.body.querySelector('button').textContent}
+${document.body.querySelector('button:not(#tts)').textContent}
 Fitxategiak:
 ${document.body.querySelectorAll('li').map(li=>li.textContent).join(',\n')}
     `;
