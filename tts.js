@@ -1,7 +1,9 @@
 async function speakAsync(text) {
   return new Promise(async (resolve, reject) => {
     try {
-      speak('Kaixo Mundua', { voice: 'eu' })
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "es-EU";
+      speechSynthesis.speak(utterance);
     } catch (err) {
       reject(err);
     }
