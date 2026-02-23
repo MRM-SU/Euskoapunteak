@@ -14,9 +14,9 @@ async function speakAsync(text) {
   });
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
+let onLoadDoc = ()=>{
   document.querySelectorAll('#tts').forEach(ttsEl=>ttsEl.addEventListener('click',tts))
-})
+}
 
 async function tts(event) {
   let button = event.target;
