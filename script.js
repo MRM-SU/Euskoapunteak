@@ -118,9 +118,12 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         const span = pfp.appendChild(document.createElement('span'));
         span.textContent = user[0].toUpperCase();
         span.title = gmail;
-    })
+    });
+
+    onLoadDoc()
 
 })
+
 
 
 
