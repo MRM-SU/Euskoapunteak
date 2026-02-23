@@ -88,22 +88,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         main.id = 'main';
         pub.appendChild(main);
 
-        main.title = 'Click bikoitza TTS erabiltzeko';
-        main.addEventListener('dblclick',()=>{
-          main.style.cursor = 'progress';
-          setTimeout(()=>{
-              main.style.cursor = 'auto';
-          },100);
-          const utterance = new SpeechSynthesisUtterance(`
-${title}
-${gmail}
-${description}
-          `);
-          utterance.lang = "es-EU";
-          
-          speechSynthesis.speak(utterance);
-        })
-
         let top = document.createElement('div');
         top.id = 'top';
         main.appendChild(top);
@@ -117,6 +101,7 @@ ${description}
 
         let title_ = top.appendChild(document.createElement('h1'));
         title_.textContent = title
+        title_.appendChild(document.createElement('button')).id = 'tts' // -------------------------------- < [ TTS ]
         let description_ = main.appendChild(document.createElement('p'));
         description_.textContent = description
 
@@ -136,5 +121,6 @@ ${description}
     })
 
 })
+
 
 
